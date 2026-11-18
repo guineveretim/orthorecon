@@ -1,0 +1,85 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.about-hero{max-width:1000px;margin:40px auto;padding:0 20px}
+.about-hero h1{font-size:36px;color:#0f2a44;margin:0}
+.about-hero h2{font-size:19px;color:#0e7a6b;margin:8px 0 16px;font-weight:600}
+.about-hero p{color:#444;line-height:1.7;font-size:16px}
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;max-width:1000px;margin:30px auto;padding:0 20px}
+.about-card{background:#f7f9fb;border-radius:16px;padding:24px}
+.about-card h3{color:#0f2a44;margin-top:0}
+.about-card ul{padding-left:18px;line-height:1.8;color:#333}
+.pub{border-left:3px solid #0e7a6b;padding-left:14px;margin:14px 0;color:#333;line-height:1.6}
+.pub em{color:#0f2a44}
+.contact-box{background:#0f2a44;color:#fff;border-radius:16px;padding:28px}
+.contact-box h3{color:#fff;margin-top:0}
+.contact-box a{color:#7ee8d8;text-decoration:none;font-weight:600}
+.btn{display:inline-block;background:#0e7a6b;color:#fff !important;padding:12px 20px;border-radius:999px;margin-top:14px;text-decoration:none;font-weight:700}
+.about-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1000px;margin:20px auto;padding:0 20px}
+.about-imgs img{width:100%;height:220px;object-fit:cover;border-radius:14px}
+.about-imgs .cap{font-size:12px;color:#666;text-align:center;margin-top:6px}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr}.about-imgs{grid-template-columns:1fr}}
+</style>
+
+<div class="about-hero">
+  <h1>Dr Akimu Chiwamba Mageza</h1>
+  <h2>Orthopaedic Surgeon | Adult Reconstruction Specialist</h2>
+  <p>Dr Akimu Chiwamba Mageza is a Harare-based orthopaedic surgeon and the principal practitioner at <strong>OrthoRecon</strong>, a specialist orthopaedic practice focused on the assessment and management of bone, joint, and musculoskeletal conditions.</p>
+  <p>With a clinical interest in adult reconstruction and orthopaedic trauma, Dr Mageza provides specialist consultations, treatment planning, and follow-up care. His practice is located at 11 Lanark Road, Belgravia, Harare.</p>
+  <p>Dr Mageza is committed to evidence-informed care, clear communication with patients and referring clinicians, and appropriate specialist management of orthopaedic conditions.</p>
+</div>
+
+<div class="about-imgs">
+  <div>
+    <img src="{% static 'clinic/images/gloves-on-table.jpg' %}" alt="Sterile gloves and instruments">
+    <div class="cap">Sterile • Precise • Specialist</div>
+  </div>
+  <div>
+    <img src="{% static 'clinic/images/scrubs-flat.jpg' %}" alt="Folded surgical scrubs">
+    <div class="cap">Professional standard</div>
+  </div>
+</div>
+
+<div class="about-grid">
+  <div>
+    <div class="about-card">
+      <h3>Areas of Practice</h3>
+      <ul>
+        <li>Orthopaedic consultations and specialist assessments</li>
+        <li>Adult reconstructive orthopaedic surgery</li>
+        <li>Fracture and orthopaedic trauma care</li>
+        <li>Management of bone and joint conditions</li>
+        <li>Pre-operative assessment and post-operative follow-up</li>
+        <li>Referral-based specialist orthopaedic care</li>
+      </ul>
+    </div>
+
+    <div class="about-card" style="margin-top:20px">
+      <h3>Research and Publications</h3>
+      <p style="color:#666;font-size:14px">In addition to clinical practice, Dr Mageza has contributed to orthopaedic research in Zimbabwe.</p>
+      
+      <div class="pub"><em>Population characteristics, outcomes, and centerwide insights of the Zimbabwe national experience with the SIGN intramedullary nail (2013–2020)</em> — International Orthopaedics, 2022.</div>
+      <div class="pub"><em>Orthopaedic research in Zimbabwe: a seminal bibliometric analysis</em> — SA Orthopaedic Journal, 2022.</div>
+      <div class="pub"><em>Needs assessment of diabetic foot services in Zimbabwe</em> — 2022.</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="contact-box">
+      <h3>Practice Details</h3>
+      <p><strong>Practice:</strong> OrthoRecon<br>
+      <strong>Address:</strong> 11 Lanark Road, Belgravia, Harare, Zimbabwe<br>
+      <strong>Telephone:</strong> <a href="tel:+263771663555">+263 77 166 3555</a><br>
+      <strong>Email:</strong> <a href="mailto:drakimumageza@gmail.com">drakimumageza@gmail.com</a><br>
+      <strong>Website:</strong> orthorecon.co.zw</p>
+
+      <h3 style="margin-top:24px">Book a Consultation</h3>
+      <p style="color:#cbd5e1;line-height:1.6">To arrange an orthopaedic consultation or discuss a referral, please contact OrthoRecon.</p>
+      <a class="btn" href="https://wa.me/263771663555?text=Hello%20OrthoRecon,%20I%20would%20like%20to%20book%20a%20consultation%20with%20Dr%20Mageza">Book on WhatsApp →</a>
+      <br>
+      <a class="btn" style="background:#fff;color:#0f2a44 !important" href="mailto:drakimumageza@gmail.com">Email Practice</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

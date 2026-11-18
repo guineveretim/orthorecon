@@ -1,0 +1,112 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+{% block title %}OrthoRecon — Hip, Knee & Complex Fracture Specialist | Harare{% endblock %}
+{% block extra_css %}
+<style>
+.hero{max-width:1200px;margin:0 auto;padding:32px 16px 20px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:30px;align-items:center;width:100%}
+.hero small{color:#0E9A8B;font-weight:800;letter-spacing:.5px;font-size:11px;text-transform:uppercase;display:block;line-height:1.5}
+.hero h1{font-size:54px;line-height:1.05;letter-spacing:-1.5px;margin:12px 0 14px;word-wrap:break-word}
+.hero h1 span{color:#0E9A8B}.hero p{color:#666;font-size:17px;margin-bottom:20px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+#bone3d{width:100%;height:380px;background:radial-gradient(circle at 50% 35%,#E6F5F3,#fff);border:1px solid #eef2f2;border-radius:20px;cursor:grab;touch-action:none;display:block}
+.strip{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:16px}.strip span{background:#F0F7F7;padding:9px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.gloves{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:25px}.gloves img{height:260px;border-radius:16px;object-fit:cover;width:100%}.gloves .caption{margin-top:8px;font-size:12px;color:#666;text-align:center}
+.faq details{background:#fff;border:1px solid #eee;border-radius:12px;padding:14px 16px;margin-bottom:10px}.faq summary{font-weight:700;cursor:pointer}.faq p{color:#666;font-size:14px;margin-top:8px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:24px 16px 10px}.hero h1{font-size:34px}.hero-btns{flex-direction:column}.hero-btns .btn{width:100%}#bone3d{height:300px}.gloves{grid-template-columns:1fr}}
+</style>
+{% endblock %}
+{% block content %}
+<div class="hero">
+  <div>
+    <small>ORTHORECON • HARARE • DR AKIMU MAGEZA</small>
+    <h1>Hip, Knee &<br><span>Complex Fracture</span><br>Specialist.</h1>
+    <p>Specialist orthopaedic care in Harare. Hip replacement, knee replacement, pelvic & acetabular reconstruction — without the run-around.</p>
+    <div class="hero-btns">
+      <a href="/contact-appointments/" class="btn btn-teal">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="https://wa.me/263771663555" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> WhatsApp Clinic</a>
+    </div>
+    <p style="margin-top:16px;font-size:13px;color:#888;line-height:1.7">Medical Aid Accepted • EcoCash • USD<br>Referrals Welcome • No need to travel to SA<br>Mon - Fri 08:00 - 16:30 • Harare, Zimbabwe</p>
+  </div>
+  <div style="min-width:0"><canvas id="bone3d"></canvas><p style="text-align:center;font-size:12px;color:#888;margin-top:8px"><i class="fa-solid fa-arrows-left-right"></i> Drag to rotate hip joint • 3D Interactive</p></div>
+</div>
+
+<div class="strip"><span>Hip Replacement</span><span>Knee Replacement</span><span>Pelvic Reconstruction</span><span>Complex Trauma</span></div>
+
+<div class="section">
+  <h2>What we treat</h2><p class="sub">Clear services so patients and referring doctors know exactly when to come to OrthoRecon.</p>
+  <div class="grid3">
+
+    <div class="card3d">
+      <img src="{% static 'clinic/images/black-hands-hip.jpg' %}" alt="Black patient hands clasped - Hip Replacement">
+      <h3>Hip Replacement</h3><p>For arthritis and hip fractures. Return to walking pain-free.</p>
+      <a href="{% url 'service_detail' 'hip-replacement' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card3d">
+      <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1000&q=80" alt="Gloved hands instruments">
+      <h3>Knee Replacement</h3>
+      <p>Total and partial knee replacement for severe arthritis.</p>
+      <a href="{% url 'service_detail' 'knee-replacement' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card3d">
+      <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1000&q=80" alt="Black doctor hands with scan">
+      <h3>Pelvic & Acetabular</h3><p>Specialist reconstruction for pelvic fractures.</p>
+      <a href="{% url 'service_detail' 'pelvic-acetabular' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card3d">
+      <img src="{% static 'clinic/images/surgical-team.jpg' %}" alt="Black surgical team in theatre - Complex Trauma">
+      <h3>Complex Trauma</h3><p>Complex fractures, non-unions and polytrauma.</p>
+      <a href="{% url 'service_detail' 'complex-trauma' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card3d">
+      <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1000&q=80" alt="Knee scan">
+      <h3>Adult Reconstruction</h3><p>Degenerative joint disease and revision surgery.</p>
+      <a href="{% url 'service_detail' 'adult-reconstruction' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card3d">
+      <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1000&q=80" alt="Gloved hands">
+      <h3>Fracture Care</h3><p>Structured follow-up and rehab guidance.</p>
+      <a href="{% url 'service_detail' 'fracture-care' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h2>Sterile. Precise. Specialist.</h2>
+  <p class="sub">No theatre photos. No patient photos. Just the standard we work to.</p>
+  <div class="gloves">
+    <div>
+      <img src="{% static 'clinic/images/gloves-on-table.jpg' %}" alt="Sterile gloves and instruments on tray">
+      <div class="caption">Sterile gloves • Instruments ready • No person shown</div>
+    </div>
+    <div>
+      <img src="{% static 'clinic/images/scrubs-flat.jpg' %}" alt="Folded surgical scrubs, cap and mask">
+      <div class="caption">Clean scrubs • Specialist standard • Professionalism</div>
+    </div>
+  </div>
+</div>
+
+<div class="section"><h2>Common Questions</h2><div class="faq"><details><summary>Do I need a referral letter?</summary><p>No, but it helps. You can still book directly.</p></details><details><summary>Where is OrthoRecon located?</summary><p>11 Lanark Road, Belgravia, Harare — near Parirenyatwa area. Parking available.</p></details><details><summary>How do I book?</summary><p>WhatsApp us or fill the Google Form on Contact page.</p></details></div><br><a href="/faq/" style="color:#0E9A8B;font-weight:700">See all FAQs <i class="fa-solid fa-arrow-right"></i></a></div>
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const canvas=document.getElementById('bone3d');
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(45,1,0.1,100);camera.position.set(0,1,5);
+const renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+function resize(){const w=canvas.parentElement.clientWidth;renderer.setSize(w,canvas.clientHeight);camera.aspect=w/canvas.clientHeight;camera.updateProjectionMatrix()}resize();
+const boneMat=new THREE.MeshStandardMaterial({color:0xe8e0d0,roughness:0.6});const metalMat=new THREE.MeshStandardMaterial({color:0x0E9A8B,roughness:0.2,metalness:0.8});
+const group=new THREE.Group();const ball=new THREE.Mesh(new THREE.SphereGeometry(0.9,32,32),metalMat);ball.position.set(0,1.2,0);group.add(ball);
+const neck=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.5,1.2,20),boneMat);neck.position.set(0.3,0.3,0);neck.rotation.z=0.6;group.add(neck);
+const shaft=new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.38,2.8,20),boneMat);shaft.position.set(0.9,-1.2,0);shaft.rotation.z=0.15;group.add(shaft);
+const socket=new THREE.Mesh(new THREE.TorusGeometry(1.0,0.22,16,40,Math.PI),boneMat);socket.position.set(0,1.2,0);socket.rotation.z=Math.PI;group.add(socket);scene.add(group);
+const light=new THREE.DirectionalLight(0xffffff,1.2);light.position.set(2,3,4);scene.add(light);scene.add(new THREE.AmbientLight(0xffffff,0.6));
+let isDown=false,lastX=0,lastY=0;canvas.addEventListener('pointerdown',e=>{isDown=true;lastX=e.clientX;lastY=e.clientY});window.addEventListener('pointermove',e=>{if(!isDown)return;group.rotation.y+=(e.clientX-lastX)*0.01;group.rotation.x+=(e.clientY-lastY)*0.01;lastX=e.clientX;lastY=e.clientY});window.addEventListener('pointerup',()=>isDown=false);
+function animate(){requestAnimationFrame(animate);if(!isDown)group.rotation.y+=0.008;renderer.render(scene,camera)}animate();window.addEventListener('resize',resize);
+</script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'clinic/base.html' %}
+{% block title %}{{ service.title }} — OrthoRecon{% endblock %}
+{% block extra_css %}
+<style>
+.detail-hero{max-width:1100px;margin:0 auto;padding:28px 16px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+#bone3d{width:100%;height:380px;background:radial-gradient(circle at 50% 35%,#E6F5F3,#fff);border:1px solid #eef2f2;border-radius:20px;cursor:grab;touch-action:none;display:block}
+.sketchfab-embed-wrapper iframe{width:100%;height:380px;border-radius:20px;border:1px solid #eef2f2;display:block}
+@media(max-width:850px){.detail-hero{grid-template-columns:1fr}#bone3d,.sketchfab-embed-wrapper iframe{height:300px}}
+.check li{list-style:none;margin-bottom:8px}
+</style>
+{% endblock %}
+{% block content %}
+<div class="detail-hero">
+  <div>
+    <a href="{% url 'services' %}" style="color:#0E9A8B;font-weight:700"><i class="fa-solid fa-arrow-left"></i> Back to Services</a>
+    <h2 style="font-size:36px;margin:12px 0">{{ service.title }}</h2>
+    <p style="color:#666;font-size:17px">{{ service.tagline }}</p>
+    <h3 style="margin-top:22px">What is it?</h3>
+    <p style="color:#444;line-height:1.7">{{ service.what }}</p>
+    <h3 style="margin-top:22px">Who is it for?</h3>
+    <ul class="check">
+      {% for item in service.for_who %}<li><i class="fa-solid fa-circle-check" style="color:#0E9A8B"></i> {{ item }}</li>{% endfor %}
+    </ul>
+    <h3 style="margin-top:22px">What happens next?</h3>
+    <ol style="line-height:1.8;color:#444">{% for s in service.happens %}<li>{{ s }}</li>{% endfor %}</ol>
+    <br>
+    <a href="https://wa.me/263771663555?text=Hello, I want to ask about {{ service.title }}" class="btn btn-teal"><i class="fa-brands fa-whatsapp"></i> Ask About {{ service.title }}</a>
+    <a href="/contact-appointments/" class="btn btn-outline" style="margin-left:8px">Book Appointment</a>
+  </div>
+  <div>
+    {% if service.sketchfab %}
+      <!-- REAL SKETCHFAB 3D - Hip page will use this -->
+      <div class="sketchfab-embed-wrapper">
+        <iframe title="{{ service.title }} - 3D" frameborder="0" allowfullscreen
+          mozallowfullscreen="true" webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          src="{{ service.sketchfab }}?autostart=1&ui_theme=light&preload=1">
+        </iframe>
+        <p style="text-align:center;font-size:11px;color:#888;margin-top:6px">
+          3D model: <b>{{ service.credit }}</b> on Sketchfab • Drag to rotate • Scroll to zoom
+        </p>
+      </div>
+    {% else %}
+      <!-- FALLBACK Three.js - for Knee / Pelvis / Trauma until you add their Sketchfab links -->
+      <canvas id="bone3d"></canvas>
+      <p style="text-align:center;font-size:12px;color:#888;margin-top:8px"><i class="fa-solid fa-arrows-left-right"></i> Drag to rotate • 3D Interactive</p>
+    {% endif %}
+    <div class="box" style="margin-top:16px"><b><i class="fa-solid fa-location-dot"></i> 11 Lanark Road, Belgravia, Harare</b><br><span style="font-size:14px;color:#666">Near Parirenyatwa area • Parking available • Mon-Fri 08:00-16:30</span></div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+{% if not service.sketchfab %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const canvas=document.getElementById('bone3d');
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(45,1,0.1,100);camera.position.set(0,1,5);
+const renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+function resize(){const w=canvas.parentElement.clientWidth;renderer.setSize(w,canvas.clientHeight);camera.aspect=w/canvas.clientHeight;camera.updateProjectionMatrix()}resize();
+const boneMat=new THREE.MeshStandardMaterial({color:0xe8e0d0,roughness:0.6});
+const metalMat=new THREE.MeshStandardMaterial({color:0x0E9A8B,roughness:0.2,metalness:0.8});
+const group=new THREE.Group();
+const type="{{ service.model_type }}";
+if(type==='knee'){
+  const top=new THREE.Mesh(new THREE.CylinderGeometry(0.45,0.45,1.8,20),boneMat);top.position.set(0,1.2,0);group.add(top);
+  const joint=new THREE.Mesh(new THREE.SphereGeometry(0.55,24,24),metalMat);joint.position.set(0,0,0);group.add(joint);
+  const bottom=new THREE.Mesh(new THREE.CylinderGeometry(0.38,0.38,1.8,20),boneMat);bottom.position.set(0,-1.2,0);group.add(bottom);
+} else if(type==='pelvis'){
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(1.2,0.35,16,40),boneMat);group.add(ring);
+  const ball=new THREE.Mesh(new THREE.SphereGeometry(0.6,24,24),metalMat);ball.position.set(0,0,0);group.add(ball);
+} else if(type==='trauma'){
+  const b1=new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,1.4,20),boneMat);b1.position.set(0,0.8,0);b1.rotation.z=0.3;group.add(b1);
+  const b2=new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,1.4,20),boneMat);b2.position.set(0.2,-0.8,0);b2.rotation.z=-0.2;group.add(b2);
+  const plate=new THREE.Mesh(new THREE.BoxGeometry(0.25,2.2,0.15),metalMat);plate.position.set(0.5,0,0);group.add(plate);
+} else {
+  const ball=new THREE.Mesh(new THREE.SphereGeometry(0.9,32,32),metalMat);ball.position.set(0,1.2,0);group.add(ball);
+  const neck=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.5,1.2,20),boneMat);neck.position.set(0.3,0.3,0);neck.rotation.z=0.6;group.add(neck);
+  const shaft=new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.38,2.8,20),boneMat);shaft.position.set(0.9,-1.2,0);shaft.rotation.z=0.15;group.add(shaft);
+  const socket=new THREE.Mesh(new THREE.TorusGeometry(1.0,0.22,16,40,Math.PI),boneMat);socket.position.set(0,1.2,0);socket.rotation.z=Math.PI;group.add(socket);
+}
+scene.add(group);
+const light=new THREE.DirectionalLight(0xffffff,1.2);light.position.set(2,3,4);scene.add(light);scene.add(new THREE.AmbientLight(0xffffff,0.6));
+let isDown=false,lastX=0,lastY=0;canvas.addEventListener('pointerdown',e=>{isDown=true;lastX=e.clientX;lastY=e.clientY});window.addEventListener('pointermove',e=>{if(!isDown)return;group.rotation.y+=(e.clientX-lastX)*0.01;group.rotation.x+=(e.clientY-lastY)*0.01;lastX=e.clientX;lastY=e.clientY});window.addEventListener('pointerup',()=>isDown=false);
+function animate(){requestAnimationFrame(animate);if(!isDown)group.rotation.y+=0.008;renderer.render(scene,camera)}animate();window.addEventListener('resize',resize);
+</script>
+{% endif %}
+{% endblock %}
