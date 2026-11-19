@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ReferralForm
 
 def home(request):
     return render(request, 'clinic/home.html')
@@ -10,7 +13,16 @@ def services(request):
 def patient_info(request):
     return render(request, 'clinic/patient_info.html')
 def referrals(request):
-    return render(request, 'clinic/referrals.html')
+    if request.method == 'POST':
+        form = ReferralForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Referral sent successfully. We will contact you shortly.")
+            return redirect('referrals')
+    else:
+        form = ReferralForm()
+    return render(request, 'clinic/referrals.html', {'form': form})
+
 def research(request):
     return render(request, 'clinic/research.html')
 def faq(request):
