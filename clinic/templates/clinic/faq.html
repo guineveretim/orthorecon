@@ -1,16 +1,59 @@
 {% extends 'clinic/base.html' %}
 {% block title %}FAQ — OrthoRecon{% endblock %}
+{% block extra_css %}
+<style>
+.faq-list{margin-top:25px}
+.faq-list details{background:#fff;border:1px solid #E1E7F2;border-radius:12px;padding:16px 18px;margin-bottom:10px;transition:border-color .2s}
+.faq-list details[open]{border-left:4px solid #B22222;background:#FAFBFD}
+.faq-list summary{font-weight:700;cursor:pointer;color:#1A2E66;font-size:16px}
+.faq-list summary:hover{color:#B22222}
+.faq-list p{color:#555E70;margin-top:8px;font-size:15px;line-height:1.6}
+.faq-list a{color:#B22222;font-weight:600}
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="section"><h2>Frequently Asked Questions</h2><p class="sub">This answers most calls, so staff can focus on patient care.</p>
-<div style="margin-top:25px">
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">Where is OrthoRecon located?</summary><p style="color:#666;margin-top:8px">Harare, Zimbabwe. Full address & directions on Contact page.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">What are your operating hours?</summary><p style="color:#666;margin-top:8px">Mon - Fri 08:00 - 16:30. Sat by appointment.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">Do I need a referral letter?</summary><p style="color:#666;margin-top:8px">No, but it helps. You can book directly.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">What should I bring?</summary><p style="color:#666;margin-top:8px">ID, medical aid card, old X-rays, medication list, allergy list, previous operation records.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">Do you treat hip or knee problems?</summary><p style="color:#666;margin-top:8px">Yes — hip replacement, knee replacement, complex fractures, pelvic reconstruction.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">How do I prepare?</summary><p style="color:#666;margin-top:8px">Wear loose clothing, bring all X-rays, write your questions down.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">How do I book?</summary><p style="color:#666;margin-top:8px">WhatsApp or fill the Google Form on Contact page.</p></details>
-  <details style="background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px"><summary style="font-weight:700">What happens after consultation?</summary><p style="color:#666;margin-top:8px">You get a clear plan, cost estimate, and next steps.</p></details>
-</div>
+<div class="section">
+  <h2>Frequently Asked Questions</h2>
+  <p class="sub">This answers most calls, so staff can focus on patient care.</p>
+
+  <div class="faq-list">
+    <details>
+      <summary>Where is OrthoRecon located?</summary>
+      <p>2 Seagrave Road, Upper East, Mt Pleasant, Harare. Full directions and map are on the <a href="/contact-appointments/">Contact page</a>.</p>
+    </details>
+    <details>
+      <summary>What are your operating hours?</summary>
+      <p>Mon - Fri 08:00 - 16:30. Sat by appointment.</p>
+    </details>
+    <details>
+      <summary>Do I need a referral letter?</summary>
+      <p>No, but it helps. You can book directly.</p>
+    </details>
+    <details>
+      <summary>What should I bring?</summary>
+      <p>ID, medical aid card, old X-rays/scans, medication list, allergy list, and previous operation records.</p>
+    </details>
+    <details>
+      <summary>Do you treat hip or knee problems?</summary>
+      <p>Yes — hip replacement, knee replacement, complex fractures, and pelvic reconstruction.</p>
+    </details>
+    <details>
+      <summary>How do I prepare?</summary>
+      <p>Wear loose clothing, bring all X-rays, and write your questions down.</p>
+    </details>
+    <details>
+      <summary>How do I book?</summary>
+      <p><a href="https://wa.me/263771663555">WhatsApp us</a>, email <a href="mailto:dramageza@gmail.com">dramageza@gmail.com</a>, or visit the <a href="/contact-appointments/">Contact page</a>.</p>
+    </details>
+    <details>
+      <summary>What happens after consultation?</summary>
+      <p>You get a clear plan, cost estimate, and next steps.</p>
+    </details>
+  </div>
+
+  <div style="margin-top:25px">
+    <a href="/contact-appointments/" class="btn btn-red">Still have a question? Contact Us →</a>
+  </div>
 </div>
 {% endblock %}

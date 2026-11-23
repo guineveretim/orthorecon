@@ -1,12 +1,46 @@
 {% extends 'clinic/base.html' %}
 {% block title %}Patient Information — OrthoRecon{% endblock %}
 {% block content %}
-<div class="section"><h2>Patient Information</h2><p class="sub">Arrive prepared. Know what to expect. No second trip.</p>
-<div class="two">
-  <div class="box"><h3>✅ What to Bring</h3><ul><li>National ID or passport</li><li>Referral letter, if available</li><li>Medical aid details / card</li><li>Previous X-rays, scans or reports</li><li>List of current medication</li><li>List of allergies</li><li>Previous operation records</li><li>Your questions for consultation</li></ul></div>
-  <div class="box"><h3>🩻 What Happens at Consultation</h3><p><b>1.</b> History — pain, injury, medical history<br><b>2.</b> Examination — joint movement, walking<br><b>3.</b> X-ray / Scan review<br><b>4.</b> Clear plan + cost<br><b>5.</b> Next steps — surgery, physio, or follow-up</p><br><h3>After Consultation</h3><p>You get a written plan, cost estimate, and referral for physio / tests if needed.</p></div>
-</div>
-<br>
-<div class="box"><h3>How to Prepare</h3><p>Wear loose clothing. Bring someone to help you if you have hip/knee pain. Bring all old X-rays — don't throw them away. Write your questions down before you come.</p><br><a href="/contact-appointments/" class="btn btn-teal">Book Appointment →</a></div>
+<div class="section">
+  <h2>Patient Information</h2>
+  <p class="sub">Arrive prepared. Know what to expect. No second trip.</p>
+
+  <div class="two">
+    <div class="box">
+      <h3><i class="fa-solid fa-clipboard-check" style="color:#B22222;margin-right:8px"></i>What to Bring</h3>
+      <ul>
+        <li>National ID or passport</li>
+        <li>Referral letter, if available</li>
+        <li>Medical aid details / card</li>
+        <li>Previous X-rays, scans or reports</li>
+        <li>List of current medication</li>
+        <li>List of allergies</li>
+        <li>Previous operation records</li>
+        <li>Your questions for consultation</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h3><i class="fa-solid fa-x-ray" style="color:#1A2E66;margin-right:8px"></i>What Happens at Consultation</h3>
+      <p style="line-height:1.9">
+        <b style="color:#B22222">1.</b> History — pain, injury, medical history<br>
+        <b style="color:#B22222">2.</b> Examination — joint movement, walking<br>
+        <b style="color:#B22222">3.</b> X-ray / Scan review<br>
+        <b style="color:#B22222">4.</b> Clear plan + cost<br>
+        <b style="color:#B22222">5.</b> Next steps — surgery, physio, or follow-up
+      </p>
+      <br>
+      <h3><i class="fa-solid fa-file-medical" style="color:#C8A24E;margin-right:8px"></i>After Consultation</h3>
+      <p>You get a written plan, cost estimate, and referral for physio / tests if needed.</p>
+    </div>
+  </div>
+
+  <br>
+  <div class="box" style="border-left:4px solid #B22222">
+    <h3>How to Prepare</h3>
+    <p>Wear loose clothing. Bring someone to help you if you have hip/knee pain. Bring all old X-rays — don't throw them away. Write your questions down before you come.</p>
+    <br>
+    <a href="/contact-appointments/" class="btn btn-red">Book Appointment →</a>
+  </div>
 </div>
 {% endblock %}

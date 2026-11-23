@@ -1,52 +1,89 @@
 {% extends 'clinic/base.html' %}
-   {% load static %}
+{% load static %}
 {% block title %}Services — OrthoRecon{% endblock %}
+{% block extra_css %}
+<style>
+  .card3d a {
+    display: inline-block;
+    padding: 0 8px 10px;
+    color: #B22222;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+  .card3d a:hover {
+    color: #1A2E66;
+  }
+  .service-cta {
+    background: #1A2E66 !important;
+    border-top: 4px solid #B22222;
+  }
+  .service-cta .btn-gold {
+    background: #C8A24E;
+    color: #0F1D42;
+    transition: background 0.2s;
+  }
+  .service-cta .btn-gold:hover {
+    background: #d9b662;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="section">
-  <h2>Services</h2><p class="sub">What we treat, who it's for, and what happens next.</p>
+  <h2>Services</h2>
+  <p class="sub">What we treat, who it's for, and what happens next.</p>
 
   <div class="grid3">
-    
-  <div class="card3d">
+    <div class="card3d">
       <img src="{% static 'clinic/images/black-hands-hip.jpg' %}" alt="Black patient hands clasped - Hip Replacement">
-      <h3>Hip Replacement</h3><p>For arthritis and hip fractures. Return to walking pain-free.</p>
+      <h3>Hip Replacement</h3>
+      <p>For arthritis and hip fractures. Return to walking pain-free.</p>
       <a href="{% url 'service_detail' 'hip-replacement' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
-
-  <div class="card3d">
+    <div class="card3d">
       <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1000&q=80" alt="Gloved hands instruments">
       <h3>Knee Replacement</h3>
       <p>Total and partial knee replacement for severe arthritis.</p>
       <a href="{% url 'service_detail' 'knee-replacement' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
-  <div class="card3d">
+    <div class="card3d">
       <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1000&q=80" alt="Black doctor hands with scan">
-      <h3>Pelvic & Acetabular</h3><p>Specialist reconstruction for pelvic fractures.</p>
+      <h3>Pelvic & Acetabular</h3>
+      <p>Specialist reconstruction for pelvic fractures.</p>
       <a href="{% url 'service_detail' 'pelvic-acetabular' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
-
-   <div class="card3d">
+    <div class="card3d">
       <img src="{% static 'clinic/images/surgical-team.jpg' %}" alt="Black surgical team in theatre - Complex Trauma">
-      <h3>Complex Trauma</h3><p>Complex fractures, non-unions and polytrauma.</p>
+      <h3>Complex Trauma</h3>
+      <p>Complex fractures, non-unions and polytrauma.</p>
       <a href="{% url 'service_detail' 'complex-trauma' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
-     <div class="card3d">
+    <div class="card3d">
       <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1000&q=80" alt="Knee scan">
-      <h3>Adult Reconstruction</h3><p>Degenerative joint disease and revision surgery.</p>
+      <h3>Adult Reconstruction</h3>
+      <p>Degenerative joint disease and revision surgery.</p>
       <a href="{% url 'service_detail' 'adult-reconstruction' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
     <div class="card3d">
       <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1000&q=80" alt="Gloved hands">
-      <h3>Fracture Care</h3><p>Structured follow-up and rehab guidance.</p>
+      <h3>Fracture Care</h3>
+      <p>Structured follow-up and rehab guidance.</p>
       <a href="{% url 'service_detail' 'fracture-care' %}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
+  </div>
+</div>
 
+<div class="section">
+  <div class="dark service-cta">
+    <h2>Not sure which service you need?</h2>
+    <p>WhatsApp your X-ray / problem. We will tell you the right clinic to come to.</p>
+    <a href="https://wa.me/263771663555?text=Hello%20OrthoRecon,%20I%20would%20like%20to%20share%20an%20X-ray%20or%20ask%20about%20a%20service" class="btn btn-gold"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us →</a>
+    <a href="/contact-appointments/" class="btn btn-white">Contact & Directions</a>
+  </div>
 </div>
-</div>
-<div class="section"><div class="dark"><h2>Not sure which service you need?</h2><p>WhatsApp your X-ray / problem. We will tell you the right clinic to come to.</p><a href="https://wa.me/263XXXXXXXXX" class="btn btn-teal">WhatsApp Us →</a></div></div>
 {% endblock %}

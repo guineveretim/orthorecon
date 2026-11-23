@@ -1,24 +1,27 @@
 {% extends 'clinic/base.html' %}
 {% load static %}
+{% block title %}Dr Akimu Chiwamba Mageza — OrthoRecon | Harare{% endblock %}
 {% block content %}
 <style>
 .about-hero{max-width:1000px;margin:40px auto;padding:0 20px}
-.about-hero h1{font-size:36px;color:#0f2a44;margin:0}
-.about-hero h2{font-size:19px;color:#0e7a6b;margin:8px 0 16px;font-weight:600}
-.about-hero p{color:#444;line-height:1.7;font-size:16px}
+.about-hero h1{font-size:36px;color:#1A2E66;margin:0}
+.about-hero h2{font-size:19px;color:#B22222;margin:8px 0 16px;font-weight:700}
+.about-hero p{color:#444;line-height:1.7;font-size:16px;margin-bottom:12px}
 .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;max-width:1000px;margin:30px auto;padding:0 20px}
-.about-card{background:#f7f9fb;border-radius:16px;padding:24px}
-.about-card h3{color:#0f2a44;margin-top:0}
+.about-card{background:#F4F6FA;border:1px solid #E1E7F2;border-radius:16px;padding:24px}
+.about-card h3{color:#1A2E66;margin-top:0;margin-bottom:10px}
 .about-card ul{padding-left:18px;line-height:1.8;color:#333}
-.pub{border-left:3px solid #0e7a6b;padding-left:14px;margin:14px 0;color:#333;line-height:1.6}
-.pub em{color:#0f2a44}
-.contact-box{background:#0f2a44;color:#fff;border-radius:16px;padding:28px}
-.contact-box h3{color:#fff;margin-top:0}
-.contact-box a{color:#7ee8d8;text-decoration:none;font-weight:600}
-.btn{display:inline-block;background:#0e7a6b;color:#fff !important;padding:12px 20px;border-radius:999px;margin-top:14px;text-decoration:none;font-weight:700}
+.pub{border-left:3px solid #B22222;padding-left:14px;margin:14px 0;color:#333;line-height:1.6}
+.pub em{color:#1A2E66;font-weight:600}
+.contact-box{background:#1A2E66;color:#fff;border-radius:16px;padding:28px;border-top:4px solid #B22222}
+.contact-box h3{color:#fff;margin-top:0;margin-bottom:12px}
+.contact-box a{color:#F3D999;text-decoration:none;font-weight:600}
+.contact-box a:hover{text-decoration:underline}
+.contact-box .btn{display:inline-block;background:#B22222;color:#fff !important;padding:12px 22px;border-radius:999px;margin-top:14px;text-decoration:none;font-weight:700;transition:background .2s}
+.contact-box .btn:hover{background:#8F1B1B;text-decoration:none}
 .about-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1000px;margin:20px auto;padding:0 20px}
 .about-imgs img{width:100%;height:220px;object-fit:cover;border-radius:14px}
-.about-imgs .cap{font-size:12px;color:#666;text-align:center;margin-top:6px}
+.about-imgs .cap{font-size:12px;color:#555E70;text-align:center;margin-top:6px}
 @media(max-width:700px){.about-grid{grid-template-columns:1fr}.about-imgs{grid-template-columns:1fr}}
 </style>
 
@@ -26,7 +29,7 @@
   <h1>Dr Akimu Chiwamba Mageza</h1>
   <h2>Orthopaedic Surgeon | Adult Reconstruction Specialist</h2>
   <p>Dr Akimu Chiwamba Mageza is a Harare-based orthopaedic surgeon and the principal practitioner at <strong>OrthoRecon</strong>, a specialist orthopaedic practice focused on the assessment and management of bone, joint, and musculoskeletal conditions.</p>
-  <p>With a clinical interest in adult reconstruction and orthopaedic trauma, Dr Mageza provides specialist consultations, treatment planning, and follow-up care. His practice is located at 11 Lanark Road, Belgravia, Harare.</p>
+  <p>With a clinical interest in adult reconstruction and orthopaedic trauma, Dr Mageza provides specialist consultations, treatment planning, and follow-up care. His practice is located at 2 Seagrave Road, Upper East, Mt Pleasant, Harare.</p>
   <p>Dr Mageza is committed to evidence-informed care, clear communication with patients and referring clinicians, and appropriate specialist management of orthopaedic conditions.</p>
 </div>
 
@@ -57,7 +60,7 @@
 
     <div class="about-card" style="margin-top:20px">
       <h3>Research and Publications</h3>
-      <p style="color:#666;font-size:14px">In addition to clinical practice, Dr Mageza has contributed to orthopaedic research in Zimbabwe.</p>
+      <p style="color:#555E70;font-size:14px">In addition to clinical practice, Dr Mageza has contributed to orthopaedic research in Zimbabwe.</p>
       
       <div class="pub"><em>Population characteristics, outcomes, and centerwide insights of the Zimbabwe national experience with the SIGN intramedullary nail (2013–2020)</em> — International Orthopaedics, 2022.</div>
       <div class="pub"><em>Orthopaedic research in Zimbabwe: a seminal bibliometric analysis</em> — SA Orthopaedic Journal, 2022.</div>
@@ -68,17 +71,17 @@
   <div>
     <div class="contact-box">
       <h3>Practice Details</h3>
-      <p><strong>Practice:</strong> OrthoRecon<br>
-      <strong>Address:</strong> 11 Lanark Road, Belgravia, Harare, Zimbabwe<br>
-      <strong>Telephone:</strong> <a href="tel:+263771663555">+263 77 166 3555</a><br>
-      <strong>Email:</strong> <a href="mailto:drakimumageza@gmail.com">drakimumageza@gmail.com</a><br>
+      <p style="line-height:1.8"><strong>Practice:</strong> OrthoRecon<br>
+      <strong>Address:</strong> 2 Seagrave Road, Upper East, Mt Pleasant, Harare, Zimbabwe<br>
+      <strong>Telephone:</strong> <a href="tel:+263785393379">+263 78 539 3379</a><br>
+      <strong>Email:</strong> <a href="mailto:dramageza@gmail.com">dramageza@gmail.com</a><br>
       <strong>Website:</strong> orthorecon.co.zw</p>
 
       <h3 style="margin-top:24px">Book a Consultation</h3>
-      <p style="color:#cbd5e1;line-height:1.6">To arrange an orthopaedic consultation or discuss a referral, please contact OrthoRecon.</p>
-      <a class="btn" href="https://wa.me/263771663555?text=Hello%20OrthoRecon,%20I%20would%20like%20to%20book%20a%20consultation%20with%20Dr%20Mageza">Book on WhatsApp →</a>
+      <p style="color:#CBD5E1;line-height:1.6">To arrange an orthopaedic consultation or discuss a referral, please contact OrthoRecon.</p>
+      <a class="btn" href="https://wa.me/263785393379?text=Hello%20OrthoRecon,%20I%20would%20like%20to%20book%20a%20consultation%20with%20Dr%20Mageza">Book on WhatsApp →</a>
       <br>
-      <a class="btn" style="background:#fff;color:#0f2a44 !important" href="mailto:drakimumageza@gmail.com">Email Practice</a>
+      <a class="btn" style="background:#fff;color:#1A2E66 !important" href="mailto:dramageza@gmail.com">Email Practice</a>
     </div>
   </div>
 </div>

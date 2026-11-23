@@ -1,17 +1,44 @@
 {% extends 'clinic/base.html' %}
 {% block title %}Research & Publications — OrthoRecon{% endblock %}
-{% block content %}
-<div class="section"><h2>Research & Publications</h2>
-    <p class="sub">Clinical expertise backed by research and contribution to orthopaedic care in Zimbabwe.</p>
-<div class="box"><h3>Selected Publications</h3>
-    <ul><li>[Add Paper Title 1] — Journal, Year</li><li>[Add Paper Title 2] — Journal, Year</li>
-        <li>[Add Paper Title 3] — Journal, Year</li></ul>
-        <br>
-        <p style="color:#888;font-size:13px">We will replace with Dr Mageza's real publications.
-             We will Add PubMed / Google Scholar link here.</p></div>
-<br>
-<div class="box"><h3>Research Interests</h3>
-    <p>Hip & knee arthroplasty outcomes, trauma care in low-resource settings, pelvic reconstruction,
-         and improving access to specialist orthopaedic care in Zimbabwe.</p></div>
-</div>
+{% block extra_css %}
+<style>
+  .pub-list { list-style: none; padding-left: 0 !important; margin-top: 14px !important; }
+  .pub-list li {
+    border-left: 3px solid #B22222;
+    padding-left: 14px;
+    margin: 14px 0 !important;
+    color: #333;
+    line-height: 1.6;
+  }
+  .pub-list em { color: #1A2E66; font-weight: 600; }
+  .scholar-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+</style>
 {% endblock %}
+
+{% block content %}
+<div class="section">
+  <h2>Research & Publications</h2>
+  <p class="sub">Clinical expertise backed by research and contribution to orthopaedic care in Zimbabwe.</p>
+
+  <div class="box">
+    <h3><i class="fa-solid fa-book-medical" style="color:#B22222;margin-right:8px"></i>Selected Publications</h3>
+    <ul class="pub-list">
+      <li><em>Population characteristics, outcomes, and centerwide insights of the Zimbabwe national experience with the SIGN intramedullary nail (2013–2020)</em> — International Orthopaedics, 2022.</li>
+      <li><em>Orthopaedic research in Zimbabwe: a seminal bibliometric analysis</em> — SA Orthopaedic Journal, 2022.</li>
+      <li><em>Needs assessment of diabetic foot services in Zimbabwe</em> — 2022.</li>
+    </ul>
+    <div class="scholar-links">
+      <!-- Replace # with Dr Mageza's real PubMed and Google Scholar URLs -->
+      <a href="#" target="_blank" class="btn btn-red nav-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> PubMed Profile</a>
+      <a href="#" target="_blank" class="btn btn-outline nav-btn"><i class="fa-solid fa-graduation-cap" style="color:#C8A24E"></i> Google Scholar</a>
+    </div>
+    <p style="color:#64748B;font-size:12px;margin-top:12px">Update the links above once Dr. Mageza's PubMed and Google Scholar URLs are ready.</p>
+  </div>
+
+  <br>
+
+  <div class="box" style="border-left:4px solid #1A2E66">
+    <h3><i class="fa-solid fa-microscope" style="color:#C8A24E;margin-right:8px"></i>Research Interests</h3>
+    <p>Hip & knee arthroplasty outcomes, trauma care in low-resource settings, pelvic reconstruction, and improving access to specialist orthopaedic care in Zimbabwe.</p>
+  </div>
+</div>
