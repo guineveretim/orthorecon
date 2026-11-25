@@ -39,6 +39,9 @@
 .faq summary{font-weight:700;cursor:pointer;color:var(--brand-navy)}
 .faq p{color:#555E70;font-size:14px;margin-top:8px}
 
+.clinic-footer-meta{max-width:1200px;margin:24px auto 0;padding:18px 16px;border-top:1px solid #E1E7F2;font-size:13px;color:#64748B;line-height:1.7;text-align:center}
+.clinic-footer-meta a{color:var(--brand-navy);font-weight:600;text-decoration:none}
+
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;padding:24px 16px 10px}
   .hero h1{font-size:34px}
@@ -53,18 +56,13 @@
 {% block content %}
 <div class="hero">
   <div>
-    <small>ORTHORECON • HARARE • DR AKIMU MAGEZA</small>
+    <small>ORTHORECON • HARARE • Dr. A. C. MAGEZA</small>
     <h1>Hip, Knee &<br><span>Complex Fracture</span><br>Specialist.</h1>
     <p>Orthopaedics & Trauma Reconstruction in Harare. Hip replacement, knee replacement, pelvic & acetabular reconstruction — without the run-around.</p>
     <div class="hero-btns">
       <a href="/contact-appointments/" class="btn btn-navy">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
       <a href="https://wa.me/263785393379" class="btn btn-outline-red"><i class="fa-brands fa-whatsapp"></i> WhatsApp Clinic</a>
     </div>
-    <p style="margin-top:16px;font-size:13px;color:#64748B;line-height:1.7">
-      Medical Aid Accepted • EcoCash • USD<br>
-      2 Seagrave Road, Upper East, Mt Pleasant, Harare<br>
-      <a href="mailto:dramageza@gmail.com" style="color:var(--brand-navy);font-weight:600;text-decoration:none">dramageza@gmail.com</a> • Mon - Fri 08:00 - 16:30
-    </p>
   </div>
   <div style="min-width:0">
     <canvas id="bone3d"></canvas>
@@ -163,6 +161,14 @@
   <br>
   <a href="/faq/" style="color:var(--brand-red);font-weight:700">See all FAQs <i class="fa-solid fa-arrow-right"></i></a>
 </div>
+
+{% block footer %}
+<div class="clinic-footer-meta">
+  Medical Aid Accepted • EcoCash • USD<br>
+  2 Seagrave Road, Upper East, Mt Pleasant, Harare<br>
+  <a href="mailto:dramageza@gmail.com">dramageza@gmail.com</a> • Mon - Fri 08:00 - 16:30
+</div>
+{% endblock %}
 {% endblock %}
 
 {% block extra_js %}
@@ -182,7 +188,7 @@ function resize(){
 }
 resize();
 
-// Updated materials to match the Navy, Gold implant & Red accent in the new logo[cite: 1]
+// Updated materials to match the Navy, Gold implant & Red accent in the new logo
 const boneMat=new THREE.MeshStandardMaterial({color:0xf5f5f5,roughness:0.35,metalness:0.2});
 const implantGoldMat=new THREE.MeshStandardMaterial({color:0xD4AF37,roughness:0.2,metalness:0.85});
 const socketAccentMat=new THREE.MeshStandardMaterial({color:0xB22222,roughness:0.4,metalness:0.15});
