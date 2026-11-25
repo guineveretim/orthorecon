@@ -11,6 +11,81 @@
   --brand-tint: #F2F5FA;
 }
 
+/* Multi-layer Firewatch / Locomotive-inspired parallax stage without hiding the grid */
+.parallax-world {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #F7F9FC;
+}
+
+/* Layer 1: Your signature 48px grid + subtle radial depth */
+.parallax-grid {
+  position: absolute;
+  inset: -160px 0;
+  background-image:
+    radial-gradient(circle at 82% 18%, rgba(26, 46, 102, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 18% 72%, rgba(200, 162, 78, 0.07) 0%, transparent 42%),
+    linear-gradient(to right, rgba(26, 46, 102, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 46, 102, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-position: center, center, 0 var(--grid-y, 0px), 0 var(--grid-y, 0px);
+  transform: translate3d(0, var(--layer-grid, 0px), 0);
+  will-change: transform;
+}
+
+/* Layer 2: Far parallax plane (wide surgical theatre, soft & airy) */
+.parallax-far {
+  position: absolute;
+  right: -4%;
+  top: 6%;
+  width: min(680px, 62vw);
+  height: 390px;
+  border-radius: 28px;
+  overflow: hidden;
+  opacity: 0.22;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 55% 50%, #000 35%, transparent 100%);
+          mask-image: radial-gradient(ellipse 75% 70% at 55% 50%, #000 35%, transparent 100%);
+  transform: translate3d(0, var(--layer-far, 0px), 0) scale(1.06);
+  will-change: transform;
+}
+.parallax-far img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(0.96);
+}
+
+/* Layer 3: Mid-depth parallax plane (sterile tray, slightly faster scroll speed) */
+.parallax-near {
+  position: absolute;
+  left: -3%;
+  bottom: -4%;
+  width: min(560px, 54vw);
+  height: 330px;
+  border-radius: 28px;
+  overflow: hidden;
+  opacity: 0.24;
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 45% 55%, #000 32%, transparent 100%);
+          mask-image: radial-gradient(ellipse 72% 68% at 45% 55%, #000 32%, transparent 100%);
+  transform: translate3d(0, var(--layer-near, 0px), 0) scale(1.08);
+  will-change: transform;
+}
+.parallax-near img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) contrast(0.98);
+}
+
+/* Keep foreground sections cleanly above the parallax world */
+.hero, .strip, .section, .clinic-footer-meta {
+  position: relative;
+  z-index: 1;
+}
+
 .hero{max-width:1200px;margin:0 auto;padding:32px 16px 20px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:30px;align-items:center;width:100%}
 .hero small{color:var(--brand-red);font-weight:800;letter-spacing:.5px;font-size:11px;text-transform:uppercase;display:block;line-height:1.5}
 .hero h1{font-size:54px;line-height:1.05;letter-spacing:-1.5px;margin:12px 0 14px;word-wrap:break-word;color:var(--brand-navy)}
@@ -21,13 +96,28 @@
 /* Button overrides in case base.html still has teal classes */
 .btn-navy{background:var(--brand-navy);color:#fff;padding:12px 22px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
 .btn-navy:hover{background:var(--brand-navy-dark)}
-.btn-outline-red{border:2px solid var(--brand-red);color:var(--brand-red);background:#fff;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
+.btn-outline-red{border:2px solid var(--brand-red);color:var(--brand-red);background:rgba(255,255,255,0.92);padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:0.2s}
 .btn-outline-red:hover{background:var(--brand-red);color:#fff}
 
-#bone3d{width:100%;height:380px;background:radial-gradient(circle at 50% 35%,#EBF0FA,#ffffff);border:1px solid #E1E7F2;border-radius:20px;cursor:grab;touch-action:none;display:block}
+/* Deeper clinical navy-slate backdrop so ivory bones & gold implant stand out clearly */
+#bone3d{
+  width:100%;
+  height:430px;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(200, 162, 78, 0.14), transparent 48%),
+    linear-gradient(165deg, #243B7A 0%, #162654 58%, #0E1838 100%);
+  border:1px solid rgba(26, 46, 102, 0.35);
+  border-radius:20px;
+  cursor:grab;
+  touch-action:none;
+  display:block;
+  box-shadow:0 16px 36px rgba(17, 31, 71, 0.22);
+}
+#bone3d:active{cursor:grabbing}
 .strip{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:16px}
-.strip span{background:var(--brand-tint);color:var(--brand-navy);border:1px solid #DCE4F2;padding:9px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.strip span{background:rgba(255,255,255,0.92);color:var(--brand-navy);border:1px solid #DCE4F2;padding:9px 14px;border-radius:20px;font-size:13px;font-weight:700}
 
+.card3d{background:rgba(255,255,255,0.94);border:1px solid #E5EBF5;backdrop-filter:blur(4px)}
 .card3d a{color:var(--brand-red);font-weight:700}
 .card3d h3{color:var(--brand-navy)}
 
@@ -35,11 +125,11 @@
 .gloves img{height:260px;border-radius:16px;object-fit:cover;width:100%}
 .gloves .caption{margin-top:8px;font-size:12px;color:#555E70;text-align:center}
 
-.faq details{background:#fff;border:1px solid #E1E7F2;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.faq details{background:rgba(255,255,255,0.95);border:1px solid #E1E7F2;border-radius:12px;padding:14px 16px;margin-bottom:10px}
 .faq summary{font-weight:700;cursor:pointer;color:var(--brand-navy)}
 .faq p{color:#555E70;font-size:14px;margin-top:8px}
 
-.clinic-footer-meta{max-width:1200px;margin:24px auto 0;padding:18px 16px;border-top:1px solid #E1E7F2;font-size:13px;color:#64748B;line-height:1.7;text-align:center}
+.clinic-footer-meta{max-width:1200px;margin:24px auto 0;padding:18px 16px;border-top:1px solid #E1E7F2;font-size:13px;color:#64748B;line-height:1.7;text-align:center;background:rgba(255,255,255,0.82)}
 .clinic-footer-meta a{color:var(--brand-navy);font-weight:600;text-decoration:none}
 
 @media(max-width:900px){
@@ -47,13 +137,25 @@
   .hero h1{font-size:34px}
   .hero-btns{flex-direction:column}
   .hero-btns a{width:100%;justify-content:center}
-  #bone3d{height:300px}
+  #bone3d{height:360px}
   .gloves{grid-template-columns:1fr}
+  .parallax-far{width:88vw;height:240px;right:-10%;top:10%}
+  .parallax-near{width:85vw;height:210px;left:-10%;bottom:2%}
 }
 </style>
 {% endblock %}
 
 {% block content %}
+<div class="parallax-world" id="parallaxWorld" aria-hidden="true">
+  <div class="parallax-grid" id="layerGrid"></div>
+  <div class="parallax-far" id="layerFar">
+    <img src="{% static 'clinic/images/theatre-white-1.jpg' %}" alt="">
+  </div>
+  <div class="parallax-near" id="layerNear">
+    <img src="{% static 'clinic/images/tray-white.jpg' %}" alt="">
+  </div>
+</div>
+
 <div class="hero">
   <div>
     <small>ORTHORECON • HARARE • Dr. A. C. MAGEZA</small>
@@ -66,7 +168,7 @@
   </div>
   <div style="min-width:0">
     <canvas id="bone3d"></canvas>
-    <p style="text-align:center;font-size:12px;color:#64748B;margin-top:8px"><i class="fa-solid fa-arrows-left-right"></i> Drag to rotate hip joint • 3D Interactive</p>
+    <p style="text-align:center;font-size:12px;color:#64748B;margin-top:8px"><i class="fa-solid fa-arrows-left-right"></i> Drag to rotate • Anatomical Lower Skeleton Loop</p>
   </div>
 </div>
 
@@ -174,68 +276,362 @@
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const canvas=document.getElementById('bone3d');
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(45,1,0.1,100);
-camera.position.set(0,1,5);
-const renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+// Firewatch / Locomotive multi-plane depth parallax with smooth lerp
+const layerGrid = document.getElementById('layerGrid');
+const layerFar = document.getElementById('layerFar');
+const layerNear = document.getElementById('layerNear');
 
-function resize(){
-  const w=canvas.parentElement.clientWidth;
-  renderer.setSize(w,canvas.clientHeight);
-  camera.aspect=w/canvas.clientHeight;
+let currentY = window.scrollY || window.pageYOffset || 0;
+let targetY = currentY;
+
+window.addEventListener('scroll', () => {
+  targetY = window.scrollY || window.pageYOffset || 0;
+}, { passive: true });
+
+function stepParallax() {
+  currentY += (targetY - currentY) * 0.1;
+
+  if (layerGrid) {
+    layerGrid.style.setProperty('--layer-grid', (-currentY * 0.05).toFixed(1) + 'px');
+    layerGrid.style.setProperty('--grid-y', (-currentY * 0.18).toFixed(1) + 'px');
+  }
+  if (layerFar) {
+    layerFar.style.setProperty('--layer-far', (-currentY * 0.12).toFixed(1) + 'px');
+  }
+  if (layerNear) {
+    layerNear.style.setProperty('--layer-near', (-currentY * 0.24).toFixed(1) + 'px');
+  }
+
+  requestAnimationFrame(stepParallax);
+}
+stepParallax();
+
+// Standing Lower Skeleton (Lumbar Spine, Pelvis, Femurs, Tibia/Fibula & Prominent Feet)
+const canvas = document.getElementById('bone3d');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+camera.position.set(0.55, -0.05, 8.6);
+
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+function resize() {
+  const w = canvas.parentElement.clientWidth;
+  const h = canvas.clientHeight || 430;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
   camera.updateProjectionMatrix();
 }
 resize();
 
-// Updated materials to match the Navy, Gold implant & Red accent in the new logo
-const boneMat=new THREE.MeshStandardMaterial({color:0xf5f5f5,roughness:0.35,metalness:0.2});
-const implantGoldMat=new THREE.MeshStandardMaterial({color:0xD4AF37,roughness:0.2,metalness:0.85});
-const socketAccentMat=new THREE.MeshStandardMaterial({color:0xB22222,roughness:0.4,metalness:0.15});
-
-const group=new THREE.Group();
-const ball=new THREE.Mesh(new THREE.SphereGeometry(0.9,32,32),implantGoldMat);
-ball.position.set(0,1.2,0);
-group.add(ball);
-
-const neck=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.5,1.2,20),boneMat);
-neck.position.set(0.3,0.3,0);
-neck.rotation.z=0.6;
-group.add(neck);
-
-const shaft=new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.38,2.8,20),boneMat);
-shaft.position.set(0.9,-1.2,0);
-shaft.rotation.z=0.15;
-group.add(shaft);
-
-const socket=new THREE.Mesh(new THREE.TorusGeometry(1.0,0.22,16,40,Math.PI),socketAccentMat);
-socket.position.set(0,1.2,0);
-socket.rotation.z=Math.PI;
-group.add(socket);
-
-scene.add(group);
-
-const light=new THREE.DirectionalLight(0xffffff,1.3);
-light.position.set(2,3,4);
-scene.add(light);
-scene.add(new THREE.AmbientLight(0xffffff,0.65));
-
-let isDown=false,lastX=0,lastY=0;
-canvas.addEventListener('pointerdown',e=>{isDown=true;lastX=e.clientX;lastY=e.clientY});
-window.addEventListener('pointermove',e=>{
-  if(!isDown)return;
-  group.rotation.y+=(e.clientX-lastX)*0.01;
-  group.rotation.x+=(e.clientY-lastY)*0.01;
-  lastX=e.clientX;lastY=e.clientY;
+// Warm ivory & bone materials with distinct shading on dark navy canvas
+const boneCorticalMat = new THREE.MeshStandardMaterial({
+  color: 0xF5EFE2,
+  roughness: 0.44,
+  metalness: 0.04
 });
-window.addEventListener('pointerup',()=>isDown=false);
+const boneSpongyMat = new THREE.MeshStandardMaterial({
+  color: 0xDFD2B8,
+  roughness: 0.58,
+  metalness: 0.03
+});
+const implantGoldMat = new THREE.MeshStandardMaterial({
+  color: 0xD8B04A,
+  roughness: 0.22,
+  metalness: 0.85
+});
+const accentCrimsonMat = new THREE.MeshStandardMaterial({
+  color: 0xC82828,
+  roughness: 0.36,
+  metalness: 0.18
+});
 
-function animate(){
-  requestAnimationFrame(animate);
-  if(!isDown)group.rotation.y+=0.008;
-  renderer.render(scene,camera);
+function buildTaperedBone(points, radii, material, tubularSegments = 28, radialSegments = 18) {
+  const curve = new THREE.CatmullRomCurve3(points);
+  const geom = new THREE.TubeGeometry(curve, tubularSegments, 1, radialSegments, false);
+  const pos = geom.attributes.position;
+  const v = new THREE.Vector3();
+  const center = new THREE.Vector3();
+
+  for (let i = 0; i < pos.count; i++) {
+    const t = Math.min(1, Math.max(0, Math.floor(i / (radialSegments + 1)) / tubularSegments));
+    curve.getPointAt(t, center);
+
+    const scaled = t * (radii.length - 1);
+    const idx = Math.min(radii.length - 2, Math.floor(scaled));
+    const frac = scaled - idx;
+    const r = radii[idx] * (1 - frac) + radii[idx + 1] * frac;
+
+    v.fromBufferAttribute(pos, i).sub(center).multiplyScalar(r).add(center);
+    pos.setXYZ(i, v.x, v.y, v.z);
+  }
+  geom.computeVertexNormals();
+  return new THREE.Mesh(geom, material);
 }
-animate();
-window.addEventListener('resize',resize);
+
+const skelRoot = new THREE.Group();
+scene.add(skelRoot);
+
+// 1. Lumbar Vertebrae & Sacrum
+const pelvisGroup = new THREE.Group();
+pelvisGroup.position.set(0, 1.38, 0);
+skelRoot.add(pelvisGroup);
+
+for (let i = 0; i < 4; i++) {
+  const vBody = new THREE.Mesh(new THREE.CylinderGeometry(0.145, 0.155, 0.14, 18), boneCorticalMat);
+  vBody.scale.set(1.18, 1, 0.88);
+  vBody.position.set(0, 0.68 - i * 0.16, -0.14);
+  pelvisGroup.add(vBody);
+
+  const spinous = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.08, 0.14), boneSpongyMat);
+  spinous.position.set(0, 0.66 - i * 0.16, -0.26);
+  spinous.rotation.x = -0.25;
+  pelvisGroup.add(spinous);
+}
+
+const sacrum = buildTaperedBone(
+  [
+    new THREE.Vector3(0, 0.08, -0.14),
+    new THREE.Vector3(0, -0.14, -0.18),
+    new THREE.Vector3(0, -0.36, -0.12)
+  ],
+  [0.24, 0.18, 0.09],
+  boneSpongyMat
+);
+pelvisGroup.add(sacrum);
+
+[-1, 1].forEach(side => {
+  const iliacBlade = buildTaperedBone(
+    [
+      new THREE.Vector3(side * 0.12, 0.02, -0.14),
+      new THREE.Vector3(side * 0.48, 0.28, -0.06),
+      new THREE.Vector3(side * 0.66, 0.36, 0.06),
+      new THREE.Vector3(side * 0.54, 0.02, 0.04),
+      new THREE.Vector3(side * 0.44, -0.24, -0.02)
+    ],
+    [0.14, 0.22, 0.16, 0.15, 0.12],
+    boneCorticalMat
+  );
+  pelvisGroup.add(iliacBlade);
+
+  const crest = buildTaperedBone(
+    [
+      new THREE.Vector3(side * 0.16, 0.10, -0.12),
+      new THREE.Vector3(side * 0.44, 0.36, -0.02),
+      new THREE.Vector3(side * 0.64, 0.38, 0.08)
+    ],
+    [0.06, 0.085, 0.065],
+    boneSpongyMat
+  );
+  pelvisGroup.add(crest);
+
+  const pubicRamus = buildTaperedBone(
+    [
+      new THREE.Vector3(side * 0.44, -0.24, -0.02),
+      new THREE.Vector3(side * 0.28, -0.44, 0.12),
+      new THREE.Vector3(side * 0.03, -0.46, 0.16)
+    ],
+    [0.085, 0.065, 0.06],
+    boneSpongyMat
+  );
+  pelvisGroup.add(pubicRamus);
+});
+
+// 2. Anatomical Leg Builder with Clear, Well-Proportioned Feet
+function buildAnatomicalLeg(side, hasGoldImplant) {
+  const hipJoint = new THREE.Group();
+  hipJoint.position.set(side * 0.44, 1.12, -0.02);
+
+  const headMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.15, 22, 22),
+    hasGoldImplant ? implantGoldMat : boneSpongyMat
+  );
+  headMesh.position.set(-side * 0.08, 0.05, 0.02);
+  hipJoint.add(headMesh);
+
+  if (hasGoldImplant) {
+    const rimAccent = new THREE.Mesh(new THREE.TorusGeometry(0.135, 0.022, 10, 24), accentCrimsonMat);
+    rimAccent.position.set(-side * 0.08, 0.05, 0.02);
+    rimAccent.rotation.y = Math.PI * 0.35;
+    hipJoint.add(rimAccent);
+  }
+
+  const neck = buildTaperedBone(
+    [
+      new THREE.Vector3(-side * 0.06, 0.04, 0.02),
+      new THREE.Vector3(side * 0.08, -0.06, 0.01),
+      new THREE.Vector3(side * 0.18, -0.16, 0)
+    ],
+    [0.082, 0.072, 0.095],
+    boneCorticalMat
+  );
+  hipJoint.add(neck);
+
+  const gt = new THREE.Mesh(new THREE.SphereGeometry(0.105, 16, 16), boneSpongyMat);
+  gt.scale.set(0.82, 1.25, 0.85);
+  gt.position.set(side * 0.22, -0.08, -0.01);
+  hipJoint.add(gt);
+
+  const femurShaft = buildTaperedBone(
+    [
+      new THREE.Vector3(side * 0.18, -0.16, 0),
+      new THREE.Vector3(side * 0.12, -0.82, 0.025),
+      new THREE.Vector3(side * 0.05, -1.42, 0.01),
+      new THREE.Vector3(side * 0.02, -1.62, 0)
+    ],
+    [0.105, 0.082, 0.092, 0.135],
+    boneCorticalMat
+  );
+  hipJoint.add(femurShaft);
+
+  const condMed = new THREE.Mesh(new THREE.SphereGeometry(0.082, 14, 14), boneSpongyMat);
+  condMed.scale.set(0.82, 0.78, 1.15);
+  condMed.position.set(-side * 0.04, -1.65, 0.02);
+  hipJoint.add(condMed);
+
+  const condLat = new THREE.Mesh(new THREE.SphereGeometry(0.082, 14, 14), boneSpongyMat);
+  condLat.scale.set(0.82, 0.78, 1.15);
+  condLat.position.set(side * 0.09, -1.65, 0.02);
+  hipJoint.add(condLat);
+
+  // Knee pivot group
+  const kneeJoint = new THREE.Group();
+  kneeJoint.position.set(side * 0.02, -1.70, 0);
+  hipJoint.add(kneeJoint);
+
+  const patella = new THREE.Mesh(new THREE.SphereGeometry(0.064, 14, 14), boneSpongyMat);
+  patella.scale.set(0.95, 1.15, 0.45);
+  patella.position.set(side * 0.01, 0.02, 0.11);
+  kneeJoint.add(patella);
+
+  const tibia = buildTaperedBone(
+    [
+      new THREE.Vector3(0, -0.02, 0),
+      new THREE.Vector3(-side * 0.01, -0.45, 0.015),
+      new THREE.Vector3(-side * 0.015, -1.15, 0.01),
+      new THREE.Vector3(-side * 0.01, -1.52, 0)
+    ],
+    [0.125, 0.078, 0.072, 0.105],
+    boneCorticalMat
+  );
+  kneeJoint.add(tibia);
+
+  const fibula = buildTaperedBone(
+    [
+      new THREE.Vector3(side * 0.11, -0.14, -0.03),
+      new THREE.Vector3(side * 0.10, -0.82, -0.025),
+      new THREE.Vector3(side * 0.085, -1.46, -0.02)
+    ],
+    [0.038, 0.03, 0.044],
+    boneSpongyMat
+  );
+  kneeJoint.add(fibula);
+
+  // Distinct, easy-to-see skeletal foot (calcaneus heel + talus ankle + midfoot + metatarsal & phalange rays)
+  const calcaneus = new THREE.Mesh(new THREE.SphereGeometry(0.105, 16, 16), boneSpongyMat);
+  calcaneus.scale.set(0.85, 0.78, 1.45);
+  calcaneus.position.set(-side * 0.005, -1.58, -0.06);
+  kneeJoint.add(calcaneus);
+
+  const talus = new THREE.Mesh(new THREE.SphereGeometry(0.095, 16, 16), boneCorticalMat);
+  talus.scale.set(0.95, 0.72, 1.05);
+  talus.position.set(-side * 0.005, -1.53, 0.03);
+  kneeJoint.add(talus);
+
+  const midfootBridge = buildTaperedBone(
+    [
+      new THREE.Vector3(-side * 0.005, -1.54, 0.03),
+      new THREE.Vector3(-side * 0.005, -1.61, 0.22),
+      new THREE.Vector3(-side * 0.005, -1.64, 0.40)
+    ],
+    [0.092, 0.082, 0.105],
+    boneSpongyMat
+  );
+  kneeJoint.add(midfootBridge);
+
+  // 5 metatarsal & toe rays fanning cleanly forward so the foot reads at a glance
+  for (let r = -2; r <= 2; r += 1) {
+    const spreadX = r * 0.034;
+    const toeLen = 0.74 - Math.abs(r) * 0.045;
+    const ray = buildTaperedBone(
+      [
+        new THREE.Vector3(-side * 0.005 + spreadX * 0.65, -1.64, 0.36),
+        new THREE.Vector3(-side * 0.005 + spreadX * 1.15, -1.65, 0.56),
+        new THREE.Vector3(-side * 0.005 + spreadX * 1.25, -1.65, toeLen)
+      ],
+      [0.034, 0.027, 0.022],
+      boneCorticalMat,
+      12,
+      12
+    );
+    kneeJoint.add(ray);
+  }
+
+  return { hipJoint, kneeJoint };
+}
+
+const leftLeg = buildAnatomicalLeg(-1, true);
+const rightLeg = buildAnatomicalLeg(1, false);
+skelRoot.add(leftLeg.hipJoint);
+skelRoot.add(rightLeg.hipJoint);
+
+// Lift and scale so full waist-to-foot skeleton (including toes) sits comfortably inside viewport
+skelRoot.position.set(0, 0.38, 0);
+skelRoot.scale.setScalar(0.88);
+
+// Strong clinical lighting + rim illumination to separate bone contours against deep navy
+const keyLight = new THREE.DirectionalLight(0xffffff, 1.45);
+keyLight.position.set(3, 5, 5.5);
+scene.add(keyLight);
+
+const rimLight = new THREE.DirectionalLight(0x8FB4FF, 1.05);
+rimLight.position.set(-4, 2, -3.5);
+scene.add(rimLight);
+
+scene.add(new THREE.AmbientLight(0xE8EEF8, 0.6));
+
+// Interactive drag rotation (3/4 angle shows foot profile + frontal pelvis/femurs clearly)
+let isDown = false, lastX = 0, lastY = 0;
+let rotY = 0.58, rotX = 0.06;
+
+canvas.addEventListener('pointerdown', e => {
+  isDown = true;
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+window.addEventListener('pointermove', e => {
+  if (!isDown) return;
+  rotY += (e.clientX - lastX) * 0.01;
+  rotX = Math.max(-0.45, Math.min(0.45, rotX + (e.clientY - lastY) * 0.006));
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+window.addEventListener('pointerup', () => { isDown = false; });
+
+// Continuous looping standing gait/flexion cycle
+const t0 = performance.now();
+function animate(now) {
+  requestAnimationFrame(animate);
+  const t = ((now - t0) * 0.001) * 1.9;
+
+  skelRoot.position.y = 0.38 + Math.sin(t * 2) * 0.022;
+  skelRoot.rotation.z = Math.sin(t) * 0.02;
+
+  leftLeg.hipJoint.rotation.x = Math.sin(t) * 0.15;
+  leftLeg.kneeJoint.rotation.x = Math.max(0, -Math.cos(t)) * 0.24;
+
+  rightLeg.hipJoint.rotation.x = -Math.sin(t) * 0.15;
+  rightLeg.kneeJoint.rotation.x = Math.max(0, Math.cos(t)) * 0.24;
+
+  if (!isDown) {
+    rotY += 0.0035;
+  }
+  skelRoot.rotation.y = rotY;
+  skelRoot.rotation.x = rotX;
+
+  renderer.render(scene, camera);
+}
+requestAnimationFrame(animate);
+window.addEventListener('resize', resize);
 </script>
 {% endblock %}
